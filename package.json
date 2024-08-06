@@ -2,6 +2,9 @@
     "name": "plugable",
     "private": true,
     "type": "module",
+    "dependencies": {
+        "tapable": "^2.2.1"
+    },
     "devDependencies": {
         "@types/node": "^22.0.0",
         "typescript": "^5.5.4"
