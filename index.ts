@@ -89,12 +89,32 @@ export class SyncLoopHook<T, O> extends HookFactory<T, O> {
     }
 }
 
-export class AsyncParallelHook { }
+export class AsyncParallelHook<T, O> extends HookFactory<T, O> {
+    public tap(callback) {
+        this.use((input, next) => {
+            callback(...input)
 
-export class AsyncParallelBailHook { }
+            next()
+        })
+    }
+}
 
-export class AsyncSeriesHook { }
+export class AsyncParallelBailHook<T, O> extends HookFactory<T, O> {
 
-export class AsyncSeriesBailHook { }
+}
 
-export class AsyncSeriesWaterfallHook { }
+export class AsyncSeriesHook<T, O> extends HookFactory<T, O> { }
+
+export class AsyncSeriesBailHook<T, O> extends HookFactory<T, O> {
+    public tap(callback) {
+        this.use((input, next) => {
+            callback(...input).then(result => result !== undefined ? result : next())
+        })
+    }
+}
+
+export class AsyncSeriesWaterfallHook<T, O> extends HookFactory<T, O> { }
+
+export abstract class PluginFactory {
+    
+}
