@@ -115,6 +115,13 @@ export class AsyncSeriesBailHook<T, O> extends HookFactory<T, O> {
 
 export class AsyncSeriesWaterfallHook<T, O> extends HookFactory<T, O> { }
 
+
+export type Plugin = any
+
 export abstract class PluginFactory {
-    
-}
+    private readonly plugins: readonly Plugin[];
+
+    public constructor(plugin: Plugin[]) {
+        this.plugins = [...plugins]
+    }
+} 
